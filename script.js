@@ -159,10 +159,10 @@ const Form = {
   saveTransaction(transaction) {
     Transaction.add(transaction);
   },
-  ClearFileds() {
-    Form.description.values = '';
-    Form.amount.values = '';
-    Form.date.values = '';
+  clearFields() {
+    Form.description.value = '';
+    Form.amount.value = '';
+    Form.date.value = '';
   },
   submit(event) {
     event.preventDefault();
@@ -170,7 +170,7 @@ const Form = {
       Form.validateFileds();
       const transaction = Form.formatValues();
       Form.saveTransaction(transaction)
-      Form.ClearFileds()
+      Form.clearFields()
 
       Modal.close()
     } catch (e) {
