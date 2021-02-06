@@ -1,5 +1,8 @@
 :root {
   --dark-blue: #362F5F;
+  --green: #49aa26;
+  --light-green: #3dd705;
+  --red: #e92929;
 
 }
 
@@ -9,11 +12,26 @@
   box-sizing: border-box;
 }
 
+html {
+  font-size: 93.75%;
+}
+
 body {
   background: #f0f2f5;
   font-family: 'Poppins', sans-serif;
 }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
 /**==   Titles   ==**/
 h2 {
   margin-top: 3.2rem;
@@ -41,6 +59,8 @@ header h1#logo {
   margin: auto;
 }
 
+
+
 #balance {
   margin-top: -8rem;
 }
@@ -62,6 +82,10 @@ header h1#logo {
 .card h3 {
   font-weight: normal;
   font-size: 1rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .card p {
@@ -71,15 +95,35 @@ header h1#logo {
 }
 
 .card.green {
-  background: #49AA26;
+  background: var(--green);
   color: #fff;
+}
+#transaction {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+
 }
 
 #data-table {
   width: 100%;
   border-spacing: 0 0.5rem;
-  color: var(--dark-blue);
+  color: #969cb3;
+}
 
+a {
+  color: var(--green);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--light-green);
+
+}
+
+.button.new {
+  display: inline-block;
+  margin-bottom: .8rem;
 }
 
 table th {
@@ -106,6 +150,11 @@ table thead tr th:first-child,
 table tbody tr td:first-child {
   border-radius: 0.3rem 0 0 0.3rem;
 }
+table thead tr th:last-child,
+table tbody tr td:last-child {
+  border-radius: 0 0.3rem 0.3rem 0;
+}
+
 
 td.description {
   color: var(--dark-blue);
@@ -116,7 +165,115 @@ td.income {
 }
 
 td.expense {
-  color: #e92929;
+  color: var(--red);
+}
+
+td img {
+  cursor: pointer;
+}
+
+/**==   Modal   ==**/
+.modal-overlay {
+  width: 100%;
+  height: 100%;
+
+  background-color: rgba(0, 0, 0, .6);
+  position: fixed;
+  top: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  opacity: 0;
+  visibility: hidden;
+
+  transition-duration: 0.5s;
+
+  z-index: 999;
+
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+
+
+
+
+}
+
+.modal {
+  background: #f0f2f5;
+  padding: 2.4rem;
+  position: relative;
+  width: 90%;
+  max-width: 700px;
+  z-index: 1;
+}
+.modal .modal-content {
+  display: flex;
+  justify-content: center;
+}
+
+#form {
+  max-width: 500px;
+}
+#form h2 {
+  margin-top: 0;
+}
+#form input {
+  border: none;
+  border-radius: 0.4rem;
+  padding: 0.8rem;
+  width: 100%;
+}
+.input-group {
+  margin-top: 0.8rem;
+}
+.input-group small {
+  opacity: 0.4;
+}
+
+.input-group.actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.input-group.actions  .button,
+.input-group.actions button {
+width: 48%;
+}
+button {
+  width: 100%;
+  height: 50px;
+
+  border: none;
+  color: #fff;
+  background: var(--green);
+
+  padding: 0;
+  border-radius: 0.25rem;
+  cursor: pointer;
+
+}
+button:hover {
+  background: var(--light-green);
+}
+.button.cancel {
+  color: var(--red);
+  border: solid 2px var(--red);
+  border-radius: 0.25rem;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  opacity: 0.6;
+}
+
+.button.cancel:hover {
+  opacity: 1;
 }
 
 /**==   Footer   ==**/
@@ -124,4 +281,15 @@ footer {
   text-align: center;
   padding: 4rem 0 2rem;
   color: var(--dark-blue);
+}
+
+@media (min-width: 800px) {
+html {
+  font-size: 87.5%;
+}
+#balance {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
 }
